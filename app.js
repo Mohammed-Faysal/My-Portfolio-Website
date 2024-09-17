@@ -1,3 +1,5 @@
+const body = document.body;
+const navbarMenu = document.getElementById('navbarMenu');
 const skills = document.querySelector('.skills')
 const skillPer = document.querySelectorAll('.skill-per')
 
@@ -17,6 +19,9 @@ function closeNavbar() {
     const checkbox = document.getElementById('check');
     if (checkbox.checked) {
         checkbox.checked = false; // Uncheck the checkbox to close the navbar
+        body.classList.remove('no-scroll');
+        body.classList.remove('no-click'); // Enable clicking again
+        navbarMenu.classList.remove('open'); // Remove the 'open' class from the navbar
     }
 }
 
@@ -25,7 +30,7 @@ document.querySelectorAll('.nav-link a').forEach(link => {
     link.addEventListener('click', function (e) {
         // Prevent default anchor behavior
         e.preventDefault();
-        
+
         // Scroll to the section smoothly
         const targetId = this.getAttribute('href');
         document.querySelector(targetId).scrollIntoView({
@@ -38,24 +43,23 @@ document.querySelectorAll('.nav-link a').forEach(link => {
 });
 
 
+
 function toggleMenu() {
     
-    const body = document.body;
-    const navbarMenu = document.getElementById('navbarMenu');
     // Toggle the navbar menu visibility
     navbarMenu.classList.toggle('open');
-
     // Check if the menu is open
     if (navbarMenu.classList.contains('open')) {
       // Disable scrolling
       body.classList.add('no-scroll');
+      body.classList.add('no-click');
     } else {
       // Enable scrolling
       body.classList.remove('no-scroll');
+      body.classList.remove('no-click');
     }
     
 }
-
 
 
 tabs.forEach((tab)=> {
@@ -184,3 +188,5 @@ ScrollReveal().reveal('.titleSec p, .UI-UX, .socialIcon a:nth-child(even), .webs
 
 ScrollReveal().reveal('.textAnimationSocial, .Programming-skills, .webDeveloper, .websiteImageBox:nth-child(1), .websiteImageBox:nth-child(4), .submitBtn, .cardSec .card:nth-child(1)', {origin: 'left'});
 ScrollReveal().reveal('.myImage, .Designing-skills, .Graphics, .websiteImageBox:nth-child(3), .websiteImageBox:nth-child(6), .formSection, .cardSec .card:nth-child(3)', {origin: 'right'});
+
+

@@ -41,18 +41,27 @@ section{
     padding: 50px;
     padding-bottom: 80px;
     scroll-margin-top: 70px; 
-    overflow: hidden;
 }
 
 section .secContainer{
     max-width: 1350px;
     width: 100%;
     margin: auto;
+    overflow: hidden;
 }
 
 
-
 /* Navbar Section*/
+
+/* Disable pointer events for all elements except the header when no-click class is added */
+.no-click *:not(header):not(header *) {
+    pointer-events: none; /* Disable all clicks and interactions outside the header */
+}
+
+/* Allow pointer events for the header, including the hamburger and navbar */
+header, header * {
+    pointer-events: auto; /* Enable interactions inside the header */
+}
 
 header{
     position: fixed;
@@ -62,9 +71,10 @@ header{
     z-index: 1000;
     background: var(--black);
     color: var(--white);
-    padding: 40px;
+    padding: 40px 0;
     z-index: 10000;
     transition: .6s;
+    overflow: hidden;
 }
 
 .container{
@@ -277,7 +287,6 @@ header.sticky .log-sign .btn{
 #check:checked ~ .hamburger-menu-container .hamburger-menu div::after{
     transform: translateY(0) rotate(45deg);
 }
-
 
 
 
@@ -501,7 +510,8 @@ header.sticky .log-sign .btn{
     font-weight: 600;
 }
 
-.hireBtn a, 
+.hireBtn a,
+.showMore a, 
 .seeAllBtn a{
     border-radius: 2rem;
     transition: .3s;
@@ -517,7 +527,8 @@ header.sticky .log-sign .btn{
 }
 
 .hireBtn a:hover,
-.downloadCVBtn a:hover, 
+.downloadCVBtn a:hover,
+.showMore a:hover, 
 .seeAllBtn a:hover{
     box-shadow: none;
 }
@@ -653,6 +664,7 @@ header.sticky .log-sign .btn{
 }
 
 .servicesBox div h1{
+    text-align: center;
     color: var(--white);
     font-size: 30px;
 }
@@ -705,7 +717,12 @@ header.sticky .log-sign .btn{
 /* Projects */
 .projects{
     background: #1d202d;
-    scroll-margin-top: 0px
+    scroll-margin-top: 0px;
+    padding-bottom: 60px;
+}
+
+.projects .secContainer{
+    padding-bottom: 15px;
 }
 
 .projects .titleSec, 
@@ -780,6 +797,9 @@ header.sticky .log-sign .btn{
     border: 1px solid var(--lightGreen);
 }
 
+.blog .secContainer .cardSec .card .imgContainer img{
+    width: 100%;
+}
 
 .blog .secContainer .cardSec .card .info{
     padding: 20px;
@@ -821,6 +841,10 @@ header.sticky .log-sign .btn{
 .team{
     background: #1d202d;
     scroll-margin-top: 0;
+}
+
+.team .secContainer{
+    overflow: visible;
 }
 
 /* Owl Carousel CSS */
@@ -997,6 +1021,11 @@ header.sticky .log-sign .btn{
 .contact{
     background: var(--black);
     scroll-margin-top: 10px;
+    padding-bottom: 35px;
+}
+
+.contact .secContainer{
+    padding-bottom: 15px;
 }
 
 .formSection form{
@@ -1081,6 +1110,7 @@ form .inputField{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: visible;
 }
 
 .footer p{
@@ -1289,16 +1319,14 @@ form .inputField{
     }
 
 
-
-
     .about .content{
         gap: 40px;
     }
 
-    .about .content .textAnimationSocial, 
+    /* .about .content .textAnimationSocial, 
     .about .contact .textAnimationSocial text-animation{
         margin-left: 30px;
-    }
+    } */
     
 }
 
@@ -1317,15 +1345,32 @@ form .inputField{
 }
 
 @media screen and (max-width: 620px){
+    header{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    header.sticky{
+        padding: 10px 0;
+    }
     section{
         padding:10px;
         padding-bottom: 80px;
         padding-top: 50px;
+        scroll-margin-top: 70px !important; 
+    }
+
+    .about .titleSec{
+        margin-top: 70px;
     }
 
     .titleSec h1{
         font-size: 50px;
         transition: 0.5s;
+    }
+
+    .whatsapp-icon {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -1337,17 +1382,16 @@ form .inputField{
     }
 
     .textAnimationSocial h3{
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         font-size: 40px;
     }
 
     .text-animation{
-
         font-size: 40px;
     }
 
     .textAnimationSocial .socialIcon{
-        margin-top: 20px;
+        margin-top: 10px;
         gap: 15px;
     }
 
